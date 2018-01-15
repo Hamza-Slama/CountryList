@@ -3,6 +3,7 @@ package cedrotest.alisalem.cedrotest.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import cedrotest.alisalem.cedrotest.Activities.CedroCounties;
 import cedrotest.alisalem.cedrotest.Activities.countriesActivity;
 import cedrotest.alisalem.cedrotest.Adapter.MyCountryAdapter;
 import cedrotest.alisalem.cedrotest.Model.Country;
@@ -60,7 +62,7 @@ public class Tab2 extends Fragment {
         GridView grid = (GridView)rootView.findViewById(R.id.grid_country_tab);
 
         mQueue= Volley.newRequestQueue(rootView.getContext());
-        String url ="https://restcountries.eu/rest/v2/all?fields=name;capital;population;flag;region";
+        final String url ="https://restcountries.eu/rest/v2/all?fields=name;capital;population;flag;region";
         jsonParse(url);
 //        System.out.println("list.size()) G =  "+list.size());
        /* list.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
@@ -74,6 +76,20 @@ public class Tab2 extends Fragment {
         MyCountryAdapter myCounterAdapter =  new MyCountryAdapter(rootView.getContext(),list);
         grid.setAdapter(myCounterAdapter);
 
+
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.fragment_tab2);
+
+        mSwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        jsonParse(url);
+                        ((CedroCounties) getActivity()).refreshNow();
+                        System.out.println("Tab 2 ( Refrech) = "+list.size());
+//                        Toast.makeText(getContext(), "Refresh Layout working", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
         return rootView;
     }
     public void jsonParse(String url){
@@ -93,7 +109,7 @@ public class Tab2 extends Fragment {
                         String countyPopulation= countries.getString("population");
                         list.add(new Country(countyFlag,countyName,countyCapitale,countyRegion,countyPopulation));
                     }
-                    System.out.println("list.size()) json =  "+list.size());
+                    System.out.println("Tab 2 ( jsonSize) = "+list.size());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -48,7 +48,12 @@ public class CedroCounties extends AppCompatActivity {
     }
 
 
-
+    public void refreshNow (){
+        finish();
+        overridePendingTransition( 0, 0);
+        startActivity(getIntent());
+        overridePendingTransition( 0, 0);
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 

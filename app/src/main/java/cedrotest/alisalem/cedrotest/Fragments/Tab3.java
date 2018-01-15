@@ -2,6 +2,7 @@ package cedrotest.alisalem.cedrotest.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
+import cedrotest.alisalem.cedrotest.Activities.CedroCounties;
 import cedrotest.alisalem.cedrotest.Adapter.MyCountryAdapter;
 import cedrotest.alisalem.cedrotest.Model.Country;
 import cedrotest.alisalem.cedrotest.R;
@@ -46,22 +48,36 @@ public class Tab3 extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab3, container, false);
         GridView grid = (GridView) rootView.findViewById(R.id.grid_country_tab_visited);
-
+        liste_visited = new ArrayList<Country>();
         mQueue = Volley.newRequestQueue(rootView.getContext());
-        String url = "https://restcountries.eu/rest/v2/all?fields=name;capital;population;flag;region";
-        jsonParse(url);
+        final String url = "https://restcountries.eu/rest/v2/all?fields=name;capital;population;flag;region";
+//        jsonParse(url);
 //        System.out.println("liste_visited.size()) G =  "+liste_visited.size());
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
-//        liste_visited.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));
+        liste_visited.add(new Country("https://restcountries.eu/data/abw.svg","countyName","countyCapitale","countyRegion","countyPopulatio"));
+        liste_visited.add(new Country("https://restcountries.eu/data/abw.svg","countyName","countyCapitale","countyRegion","countyPopulatio"));
+        liste_visited.add(new Country("https://restcountries.eu/data/abw.svg","countyName","countyCapitale","countyRegion","countyPopulatio"));
+        liste_visited.add(new Country("https://restcountries.eu/data/abw.svg","countyName","countyCapitale","countyRegion","countyPopulatio"));
+        liste_visited.add(new Country("https://restcountries.eu/data/abw.svg","countyName","countyCapitale","countyRegion","countyPopulatio"));
+        liste_visited.add(new Country("https://restcountries.eu/data/abw.svg","countyName","countyCapitale","countyRegion","countyPopulatio"));
+
+
         MyCountryAdapter myCounterAdapter = new MyCountryAdapter(rootView.getContext(), liste_visited);
         grid.setAdapter(myCounterAdapter);
 
+        final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.fragment_tab3);
+
+        mSwipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        jsonParse(url);
+                        ((CedroCounties) getActivity()).refreshNow();
+                        System.out.println("Tab 3 ( Refrech) = "+liste_visited.size());
+
+//                        Toast.makeText(getContext(), "Refresh Layout working", Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
         return rootView;
     }
 
@@ -82,7 +98,7 @@ public class Tab3 extends Fragment {
                         String countyPopulation= countries.getString("population");
                         liste_visited.add(new Country(countyFlag,countyName,countyCapitale,countyRegion,countyPopulation));
                     }
-                    System.out.println("list.size()) json =  "+liste_visited.size());
+                    System.out.println("Tab 3 ( jsonSize) =  "+liste_visited.size());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -100,4 +116,6 @@ public class Tab3 extends Fragment {
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mQueue.add(jsonArrayRequest);
     }
+
+
 }
