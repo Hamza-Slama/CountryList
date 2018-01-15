@@ -1,39 +1,10 @@
 package cedrotest.alisalem.cedrotest.Activities;
 
-import android.annotation.SuppressLint;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PictureDrawable;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.webkit.WebView;
-import android.widget.ImageView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.model.StreamEncoder;
-
-import com.caverock.androidsvg.SVG;
-import com.caverock.androidsvg.SVGParser;
-import com.master.glideimageview.GlideImageView;
-import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 import cedrotest.alisalem.cedrotest.R;
-import cedrotest.alisalem.cedrotest.SvgDecoder;
-import cedrotest.alisalem.cedrotest.SvgDrawableTranscoder;
 
 
 public class Main2Activity extends AppCompatActivity {

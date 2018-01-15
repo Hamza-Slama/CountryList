@@ -10,6 +10,7 @@ public class Country {
     String capital;
     String region;
     String population;
+    Boolean Visited;
 
     public Country(String flag, String name, String capital,String region,  String population) {
         this.flag = flag;
@@ -18,6 +19,15 @@ public class Country {
         this.region = region;
         this.population = population;
 
+    }
+
+    public Country(String flag, String name, String capital, String region, String population, Boolean visited) {
+        this.flag = flag;
+        this.name = name;
+        this.capital = capital;
+        this.region = region;
+        this.population = population;
+        this.Visited = visited;
     }
 
     public void setRegion(String region) {
