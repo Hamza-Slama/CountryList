@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "28673209115",
+    "firebase_url": "https://cedrotest-c697c.firebaseio.com",
+    "project_id": "cedrotest-c697c",
+    "storage_bucket": "cedrotest-c697c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28673209115:android:c9c8a13f615df79f",
+        "android_client_info": {
+          "package_name": "cedrotest.alisalem.cedrotest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28673209115-5mb3f8tvaulh4qlct4gd1kqtv18qs25c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOxFF0K5bqrZxVhs4jW8oaRVLP5htvC2o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

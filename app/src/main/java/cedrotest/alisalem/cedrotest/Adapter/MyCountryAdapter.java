@@ -27,11 +27,11 @@ import cedrotest.alisalem.cedrotest.R;
 
 public class MyCountryAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Country> listOfCountry ;
+    ArrayList<Country> listOfCountry;
     SparseBooleanArray mCheckedIds = new SparseBooleanArray();
 
 
-    public MyCountryAdapter(Context c,ArrayList<Country> listOfCountry){
+    public MyCountryAdapter(Context c, ArrayList<Country> listOfCountry) {
         context = c;
         this.listOfCountry = listOfCountry;
     }
@@ -53,25 +53,25 @@ public class MyCountryAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View view, ViewGroup viewGroup) {
-        LayoutInflater inflater=(LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) ;
-        View v =  inflater.inflate(R.layout.country_ticket,null);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(R.layout.country_ticket, null);
         TextView tv_countries_ = v.findViewById(R.id.tv_countries);
         CheckBox checkbox_visited_country = v.findViewById(R.id.checkbox_visited_country);
         TextView tv_capitale = v.findViewById(R.id.tv_capitale);
         WebView wb = (WebView) v.findViewById(R.id.ig_countries_web);
 
-        final Country  temp = listOfCountry.get(position);
+        final Country temp = listOfCountry.get(position);
         wb.setInitialScale(22);
         wb.loadUrl(temp.getFlag());
         tv_countries_.setText(temp.getName());
         tv_capitale.setText(temp.getCapital());
 
-        checkbox_visited_country.setChecked( mCheckedIds.get(position));
+        checkbox_visited_country.setChecked(mCheckedIds.get(position));
         final int pos = position;
         checkbox_visited_country.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                checkCheckBox(pos,!mCheckedIds.get(pos));
+                checkCheckBox(pos, !mCheckedIds.get(pos));
             }
         });
 
@@ -86,11 +86,11 @@ public class MyCountryAdapter extends BaseAdapter {
                 wb.setInitialScale(15);
                 wb.loadUrl(temp.getFlag());
                 TextView capital = (TextView) dialog.findViewById(R.id.dialog_text_capital);
-                capital.setText("Capital : "+temp.getCapital());
+                capital.setText("Capital : " + temp.getCapital());
                 TextView region = (TextView) dialog.findViewById(R.id.dialog_text_region);
-                region.setText("Region : "+temp.getRegion());
+                region.setText("Region : " + temp.getRegion());
                 TextView population = (TextView) dialog.findViewById(R.id.dialog_text_population);
-                population.setText("Population : "+temp.getPopulation());
+                population.setText("Population : " + temp.getPopulation());
 
                 Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
                 // if button is clicked, close the custom dialog
@@ -107,12 +107,36 @@ public class MyCountryAdapter extends BaseAdapter {
         return v;
     }
 
-    public void checkCheckBox  (Integer pos,Boolean value){
-        if(value){
-            mCheckedIds.put(pos,true);
-        }else{
+    public void checkCheckBox(Integer pos, Boolean value) {
+        if (value) {
+            mCheckedIds.put(pos, true);
+        } else {
             mCheckedIds.delete(pos);
         }
         notifyDataSetChanged();
+    }
+
+    public String getChekedList() {
+//        var test = 0
+//        Int count = mdataElements.size;
+//        var str =""
+//        var countreponse = 0
+//        for ( position in 0 .. count -1) {
+//            for (i in 0..3) {
+//                if (arrOfCheckedIds[i].get(position)) {
+//                    if (test == 0 ) {
+//                        countreponse++
+//                        str += "$countreponse/${mdataElements[position].Title} :\n"
+//                        test = 1
+//                    }
+//                    str +="   * Reponse : ${mdataElements[position].content[i]} \n"
+//                }
+//            }
+//            test = 0
+//        }
+//        if (str =="")str = "No Reponse "
+//        return str
+//    }
+        return "";
     }
 }

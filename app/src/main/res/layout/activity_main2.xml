@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cedrotest.alisalem.cedrotest.Activities.Main2Activity">
-  <!--  <ImageView
+    <ImageView
         android:src="@drawable/tunis"
         android:layerType="software"
         android:layout_width="160dp"
         android:layout_height="120dp"
-        android:id="@+id/ig1"/>-->
+        android:id="@+id/ig1"/>
     <!--<com.master.glideimageview.GlideImageView
         android:id="@+id/glide_image_view"
         android:layout_width="match_parent"
@@ -19,8 +19,8 @@
 
         style="?android:attr/progressBarStyleSmall"
         />-->
-    <WebView
+  <!--  <WebView
         android:id="@+id/webview"
         android:layout_width="180dp"
-        android:layout_height="120dp"></WebView>
+        android:layout_height="120dp"></WebView>-->
 </RelativeLayout>

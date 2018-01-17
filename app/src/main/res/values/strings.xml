@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">CedroTest</string>
-    <string name="faceboo_app_id">1875984889321594</string>
+    <string name="facebook_app_id">1875984889321594</string>
     <string name="fb_login_protocol_scheme">fb1875984889321594</string>
     <string name="title_activity_cedro_countries">CedroCountries</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_cedro_counties">CedroCounties</string>
     <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Country</string>
-    <string name="tab_text_3">Visited</string>
+    <string name="tab_text_2">COUNTRY</string>
+    <string name="tab_text_3">VISITED</string>
 </resources>

@@ -75,6 +75,7 @@ public class Tab2 extends Fragment {
         list.add(new Country(R.drawable.tunis,"countyName","countyCapitale","countyRegion","countyPopulatio"));*/
         MyCountryAdapter myCounterAdapter =  new MyCountryAdapter(rootView.getContext(),list);
         grid.setAdapter(myCounterAdapter);
+        myCounterAdapter.notifyDataSetChanged();
 
 
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.fragment_tab2);

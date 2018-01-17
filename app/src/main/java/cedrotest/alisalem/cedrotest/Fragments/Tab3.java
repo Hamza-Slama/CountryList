@@ -63,6 +63,7 @@ public class Tab3 extends Fragment {
 
         MyCountryAdapter myCounterAdapter = new MyCountryAdapter(rootView.getContext(), liste_visited);
         grid.setAdapter(myCounterAdapter);
+        myCounterAdapter.notifyDataSetChanged();
 
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.fragment_tab3);
 

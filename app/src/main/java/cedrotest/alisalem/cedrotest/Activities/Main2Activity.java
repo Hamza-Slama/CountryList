@@ -1,8 +1,24 @@
 package cedrotest.alisalem.cedrotest.Activities;
 
+import android.graphics.drawable.PictureDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
+import android.widget.ImageView;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestBuilder;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.model.StreamEncoder;
+import com.caverock.androidsvg.SVG;
+
+import java.io.InputStream;
 
 import cedrotest.alisalem.cedrotest.R;
 
@@ -13,11 +29,11 @@ public class Main2Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-//        ImageView ig_countries_ = (ImageView) findViewById(R.id.ig1);
-        WebView wb = (WebView) findViewById(R.id.webview);
+        ImageView ig_countries_ = (ImageView) findViewById(R.id.ig1);
+       /* WebView wb = (WebView) findViewById(R.id.webview);
 
         wb.loadUrl("https://restcountries.eu/data/afg.svg");
-        wb.setInitialScale(50);
+        wb.setInitialScale(50);*/
 
 
 //        Picasso.with(this).load("http://icons.iconarchive.com/icons/icons8/windows-8/256/Files-Jpg-icon.png").into(ig_countries_);
@@ -40,33 +56,48 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
-//        StringRequest stringRequest = new StringRequest("https://restcountries.eu/data/ata.svg",new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                try {
-//                    SVG svg = SVG.getFromString(response);
-////                    View view = getView();
-////                    if(view != null){
-//                    ImageView target = (ImageView)findViewById(R.id.ig1);
-//                            Glide.with(getApplicationContext()).load(svg).into(target);
-////                    }
-//
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        },new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-////                Log.d(Globals.TAG,"Fehler "+error);
-//            }
-//        });
-//        RequestQueue queue = Volley.newRequestQueue(this);
-//        stringRequest.setShouldCache(true);
-//        queue.add(stringRequest);
+        StringRequest stringRequest = new StringRequest("https://restcountries.eu/data/ata.svg",new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    SVG svg = SVG.getFromString(response);
+
+                    ImageView ig_countries_ = (ImageView) findViewById(R.id.ig1);
+                    Glide.with(getApplicationContext()).load(svg).into(ig_countries_);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+        });
+        RequestQueue queue = Volley.newRequestQueue(this);
+        stringRequest.setShouldCache(true);
+        queue.add(stringRequest);
 
 
+       /* RequestBuilder requestBuilder = Glide.with(this)
+                .using(Glide.buildStreamModelLoader(Uri.class, this), InputStream.class)
+                .from(Uri.class)
+                .as(SVG.class)
+                .transcode(new SvgDrawableTranscoder(), PictureDrawable.class)
+                .sourceEncoder(new StreamEncoder())
+                .cacheDecoder(new FileToStreamDecoder<SVG>(new SvgDecoder()))
+                .decoder(new SvgDecoder())
+                .placeholder(R.drawable.tunis)
+                .error(R.drawable.tunis)
+                .animate(android.R.anim.fade_in)
+                .listener(new SvgSoftwareLayerSetter<Uri>());
 
+        Uri uri = Uri.parse("http://upload.wikimedia.org/wikipedia/commons/e/e8/Svg_example3.svg");
+        requestBuilder
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                // SVG cannot be serialized so it's not worth to cache it*/
+//                .load(uri)
+//                .into(ig_countries_);
 //         requestBuilder = Glide.with(this)
 //                .using(Glide.buildStreamModelLoader(Uri.class, this), InputStream.class)
 //                .from(Uri.class)
